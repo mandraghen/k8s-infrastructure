@@ -1,0 +1,4 @@
+resources:
+  - gateway-api
+  - tls
+  - dashboard

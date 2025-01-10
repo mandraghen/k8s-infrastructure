@@ -1,0 +1,4 @@
+resources:
+  - ../../../../common/kube-core/dashboard
+patches:
+  - path: route.yaml
