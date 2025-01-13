@@ -1,0 +1,3 @@
+resources:
+  - ../../../../../common/kube-core/gateway-api/nginx-gateway
+  - nginx-gateway-fabric-deploy.yaml

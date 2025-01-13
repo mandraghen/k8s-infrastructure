@@ -1,0 +1,6 @@
+resources:
+  - standard-install.yaml
+  - nginx-gateway/nginx-gateway-fabric-crds.yaml
+  - gateway.yaml
+patches:
+  - path: nginx-gateway/nginx-gateway-fabric-resources.yaml

@@ -1,0 +1,19 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: gateway
+  namespace: default
+spec:
+  gatewayClassName: nginx
+  listeners:
+    - protocol: HTTPS
+      port: 443
+      name: gateway-https
+      #hostname: "*.k8s.local"
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: self-signed-cert
+      allowedRoutes:
+        namespaces:
+          from: All

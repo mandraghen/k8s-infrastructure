@@ -1,0 +1,3 @@
+resources:
+  - ../../../../common/kube-core/tls
+  - issuer.yaml

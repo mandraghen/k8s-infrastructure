@@ -1,0 +1,5 @@
+resources:
+  - ../../../../common/kube-core/gateway-api
+  - nginx-gateway/nginx-gateway-fabric-deploy-nodeport.yaml
+patches:
+  - path: gateway.yaml
