@@ -10,7 +10,22 @@ according to the principles of IaC and GitOps.
 ## Prerequisites
 1) Install a kubernetes instance: you can use [minikube](https://minikube.sigs.k8s.io/docs/) for your local environment or [kubespray](https://kubespray.io/) for a production-like environment.
 2) Install [ArgoCD](https://argo-cd.readthedocs.io/en/stable/):
-```bash
-kubectl kustomize infra/envs/<your-env>/argocd | kubectl apply -f -
-```
-3) Check the ArgoCD UI and enjoy
+    ```bash
+    kubectl kustomize infra/envs/<your-env>/argocd | kubectl apply -f -
+    ```
+3) To access your services locally, adjust your /etc/hosts file to access the k8s dashboard and the ArgoCD UI:
+    ```bash
+    echo "$(minikube ip) dashboard.k8s.local argocd.k8s.local" | sudo tee -a /etc/hosts
+    ```
+4) Retrieve the initial ArgoCD admin password:
+    ```bash
+    kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+    ```
+    Note: This is supposed to be a one time use password and it is recommended to change it.
+
+5) login to the ArgoCD UI at [argocd.k8s.local:31598](https://argocd.k8s.local:31598) with the username `admin` and the password retrieved in the previous step.
+
+6) Check the ArgoCD UI and enjoy
+
+## Supported Environments
+For now only the `local` environment is supported, but in the future I will add Oracle Cloud Infrastructure (`oci`).
