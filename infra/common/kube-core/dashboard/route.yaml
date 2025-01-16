@@ -7,8 +7,6 @@ spec:
   parentRefs:
     - name: gateway
       namespace: default
-#  hostnames:
-#    - "dashboard.k8s.local"
   rules:
     - backendRefs:
       - name: kubernetes-dashboard
