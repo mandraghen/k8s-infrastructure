@@ -1,0 +1,15 @@
+postgresql:
+  auth:
+    enablePostgresUser: true
+    existingSecret: postgresql-secret
+    secretKeys:
+      adminPasswordKey: postgres-password
+    usePasswordFiles: true
+  primary:
+    initdb:
+      scriptsSecret: postgresql-init-user-script
+
+  namespaceOverride: "postgresql"
+
+  image:
+    debug: true
