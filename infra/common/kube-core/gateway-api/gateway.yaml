@@ -9,7 +9,6 @@ spec:
     - protocol: HTTPS
       port: 443
       name: gateway-https
-      #hostname: "*.k8s.local"
       tls:
         mode: Terminate
         certificateRefs:

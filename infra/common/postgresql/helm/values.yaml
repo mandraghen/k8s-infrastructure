@@ -1,0 +1,12 @@
+postgresql:
+  auth:
+    enablePostgresUser: true
+    existingSecret: postgresql-secret
+    secretKeys:
+      adminPasswordKey: postgres-password
+  #primary:
+  #  initdb:
+  #    scriptsConfigMap: postgresql-init-schema
+  #    scriptsSecret: postgresql-init-user-script
+
+  namespaceOverride: "postgresql"
