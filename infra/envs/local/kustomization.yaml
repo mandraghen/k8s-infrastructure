@@ -2,3 +2,5 @@ resources:
   - kube-core
   - argocd
   - keycloak
+patches:
+  - path: postgresql/gateway.yaml

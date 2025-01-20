@@ -6,13 +6,9 @@ metadata:
 spec:
   gatewayClassName: nginx
   listeners:
-    - protocol: HTTPS
-      port: 443
-      name: gateway-https
-      tls:
-        mode: Terminate
-        certificateRefs:
-          - name: self-signed-cert
+    - protocol: TCP
+      port: 5432
+      name: gateway-postgresql
       allowedRoutes:
         namespaces:
           from: All
