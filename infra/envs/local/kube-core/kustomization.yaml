@@ -2,3 +2,4 @@ resources:
   - gateway-api
   - tls
   - dashboard
+  - ../../../common/kube-core/sealed-secrets

@@ -1,7 +1,5 @@
 namespace: keycloak
 resources:
   - ../../../common/keycloak
-  - secrets.yaml
 patches:
   - path: route.yaml
-  - path: config.yaml
