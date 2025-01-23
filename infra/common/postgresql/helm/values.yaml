@@ -8,6 +8,7 @@ postgresql:
   primary:
     initdb:
       scriptsSecret: postgresql-init-user-script
+    extraEnvVarsSecret: keycloak-secret
 
   namespaceOverride: "postgresql"
 

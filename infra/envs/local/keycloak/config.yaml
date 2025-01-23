@@ -23,12 +23,12 @@ spec:
         - name: keycloak
           env:
             - $patch: replace
-            - name: KEYCLOAK_ADMIN
+            - name: KC_BOOTSTRAP_ADMIN_USERNAME
               valueFrom:
                 secretKeyRef:
                   key: adminUser
                   name: keycloak-secrets
-            - name: KEYCLOAK_ADMIN_PASSWORD
+            - name: KC_BOOTSTRAP_ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
                   key: adminPassword
@@ -59,3 +59,5 @@ spec:
                   key: user
             - name: KC_HEALTH_ENABLED
               value: "true"
+          readinessProbe:
+            initialDelaySeconds: 10
