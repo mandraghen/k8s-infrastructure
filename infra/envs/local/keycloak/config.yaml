@@ -60,4 +60,4 @@ spec:
             - name: KC_HEALTH_ENABLED
               value: "true"
           readinessProbe:
-            initialDelaySeconds: 20
+            initialDelaySeconds: 10
