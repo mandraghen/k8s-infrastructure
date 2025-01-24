@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgresql-init-user-script
+  namespace: postgresql
+data:
+  users.sh: |
+    #!/bin/bash
+    set -e
+    export PGPASSWORD=$(cat /opt/bitnami/postgresql/secrets/postgres-password)
+    export APP_DB_PASS=$KEYCLOAK_PASSWORD
+    psql -v ON_ERROR_STOP=1 --username postgres <<-EOSQL
+       CREATE DATABASE $KEYCLOAK_DB;
+       CREATE USER $KEYCLOAK_USER WITH ENCRYPTED PASSWORD '$APP_DB_PASS';
+       GRANT ALL PRIVILEGES ON DATABASE $KEYCLOAK_DB TO $KEYCLOAK_USER;
+       \connect $KEYCLOAK_DB
+       BEGIN;
+        CREATE SCHEMA AUTHORIZATION $KEYCLOAK_USER;
+       COMMIT;
+    EOSQL
