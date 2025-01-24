@@ -7,7 +7,7 @@ postgresql:
     usePasswordFiles: true
   primary:
     initdb:
-      scriptsSecret: postgresql-init-user-script
+      scriptsConfigMap: postgresql-init-user-script
     extraEnvVarsSecret: keycloak-secret
 
   namespaceOverride: "postgresql"
