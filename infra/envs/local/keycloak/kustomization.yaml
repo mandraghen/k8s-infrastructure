@@ -3,3 +3,4 @@ resources:
   - ../../../common/keycloak
 patches:
   - path: route.yaml
+  - path: config.yaml
