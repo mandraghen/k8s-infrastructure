@@ -66,4 +66,4 @@ spec:
             - name: KC_PROXY_HEADERS
               value: xforwarded
           readinessProbe:
-            initialDelaySeconds: 5
+            initialDelaySeconds: 15
