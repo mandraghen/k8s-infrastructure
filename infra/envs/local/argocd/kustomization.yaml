@@ -2,7 +2,6 @@ namespace: argocd
 resources:
   - ../../../common/argocd
   - argocd-stable-install.yaml
-  - applications.yaml
 patches:
   - path: config.yaml
   - path: route.yaml

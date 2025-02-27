@@ -1,0 +1,5 @@
+resources:
+  - namespace.yaml
+  - ../../../common/apps
+patches:
+  - path: applicationset-patch.yaml

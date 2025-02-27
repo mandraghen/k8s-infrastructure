@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: apps
+  namespace: argocd
+spec:
+  generators:
+    - matrix:
+        generators:
+          - git:
+              repoURL: https://github.com/mandraghen/k8s-infrastructure.git
+              revision: main
+              directories:
+                - path: infra/common/apps/*
+          - list:
+              elements:
+                - env: local

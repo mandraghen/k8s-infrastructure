@@ -2,3 +2,6 @@ resources:
   - kube-core
   - argocd
   - keycloak
+  - ../../common/postgresql
+  - apps
+  - application.yaml

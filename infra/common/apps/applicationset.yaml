@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: apps
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: [ "missingkey=error" ]
+  generators:
+    - matrix:
+        generators:
+          - git:
+              repoURL: https://github.com/mandraghen/k8s-infrastructure.git
+              revision: main
+              directories:
+                - path: infra/common/apps/*
+  template:
+    metadata:
+      name: '{{.path.basename}}-{{.env}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/mandraghen/k8s-infrastructure.git
+        targetRevision: main
+        path: '{{.path.path}}'
+        helm:
+          valueFiles:
+            - values.yaml
+            - ../../../envs/{{.env}}/apps/{{.path.basename}}/values.yaml
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{.env}}'
