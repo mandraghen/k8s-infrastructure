@@ -1,5 +1,5 @@
 image:
-  tag: ""
+  tag: "1438381103b9607131fb8e15f48ada1fa4966a2b"
 route:
   hostnames:
     - auth-spa-dev.k8s.local
