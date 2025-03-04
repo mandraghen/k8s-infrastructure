@@ -22,7 +22,7 @@ serviceAccount:
 
 service:
   type: ClusterIP
-  port: 8087
+  port: 8039
 
 ingress:
   enabled: false
