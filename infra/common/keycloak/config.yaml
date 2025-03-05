@@ -65,5 +65,7 @@ spec:
               value: edge
             - name: KC_PROXY_HEADERS
               value: xforwarded
+            - name: KC_HOSTNAME_BACKCHANNEL_DYNAMIC
+              value: "true"
           readinessProbe:
             initialDelaySeconds: 15
