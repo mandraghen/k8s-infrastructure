@@ -11,3 +11,5 @@ spec:
     path: infra/envs/local
     repoURL: https://github.com/mandraghen/k8s-infrastructure.git
     targetRevision: main
+  syncPolicy:
+    automated: { }
