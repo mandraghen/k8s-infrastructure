@@ -5,7 +5,7 @@ metadata:
   namespace: kubernetes-dashboard
 spec:
   parentRefs:
-    - name: gateway
+    - name: nginx
       namespace: default
   rules:
     - backendRefs:

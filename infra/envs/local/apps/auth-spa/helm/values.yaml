@@ -2,7 +2,7 @@ image:
   tag: "sha-8680cc672321f14bc33348821037cbce38a595fb"
 route:
   hostnames:
-    - auth-spa.k8s.local
+    - auth-spa.app.local
 extraEnv:
   - name: KEYCLOAK_ID
     value: "k8s-local-web"
@@ -23,6 +23,6 @@ extraEnv:
         name: auth-spa-secrets
         key: auth-secret
   - name: NEXTAUTH_URL
-    value: "https://auth-spa.k8s.local:31598/"
+    value: "https://auth-spa.app.local:30820/"
   - name: NEXTAUTH_URL_INTERNAL
     value: "http://auth-spa.local:8039/"

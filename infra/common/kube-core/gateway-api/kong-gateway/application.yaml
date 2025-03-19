@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kong
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/mandraghen/k8s-infrastructure.git
+    path: infra/common/kube-core/gateway-api/kong-gateway/helm
+    targetRevision: main
+    helm:
+      valueFiles:
+        - values.yaml
+      skipCRDs: true
+  destination:
+    server: https://kubernetes.default.svc

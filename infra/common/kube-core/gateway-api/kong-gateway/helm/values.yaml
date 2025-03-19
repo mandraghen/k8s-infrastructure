@@ -1,0 +1,54 @@
+ingress:
+  controller:
+    namespace: kong
+    postgresql:
+      enabled: false
+    env:
+      password:
+        valueFrom:
+          secretKeyRef:
+            name: kong-credentials
+            key: password
+    ingressController:
+      env:
+        kong_admin_token:
+          valueFrom:
+            secretKeyRef:
+              name: kong-credentials
+              key: password
+  gateway:
+    namespace: kong
+    postgresql:
+      enabled: false
+    proxy:
+      type: NodePort
+    env:
+      kong_admin_token:
+        valueFrom:
+          secretKeyRef:
+            name: kong-credentials
+            key: password
+
+      database: postgres
+      pg_host: postgresql.postgresql
+      pg_port: 5432
+      pg_schema:
+        valueFrom:
+          secretKeyRef:
+            name: postgres-credentials
+            key: db
+      pg_user:
+        valueFrom:
+          secretKeyRef:
+            name: postgres-credentials
+            key: user
+      pg_password:
+        valueFrom:
+          secretKeyRef:
+            name: postgres-credentials
+            key: password
+      pg_database:
+        valueFrom:
+          secretKeyRef:
+            name: postgres-credentials
+            key: db

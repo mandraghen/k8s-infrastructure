@@ -30,7 +30,7 @@ ingress:
 route:
   enabled: true
   gateway:
-    name: gateway
+    name: kong
     namespace: default
 
 extraEnv: []

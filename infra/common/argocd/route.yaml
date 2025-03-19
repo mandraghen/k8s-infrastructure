@@ -4,7 +4,7 @@ metadata:
   name: argocdui-route
 spec:
   parentRefs:
-    - name: gateway
+    - name: nginx
       namespace: default
   rules:
     - backendRefs:
