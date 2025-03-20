@@ -1,3 +1,2 @@
 resources:
   - https://raw.githubusercontent.com/Kong/charts/kong-2.47.0/charts/kong/crds/custom-resource-definitions.yaml
-  - application.yaml

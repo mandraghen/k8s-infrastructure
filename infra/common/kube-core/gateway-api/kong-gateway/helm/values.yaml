@@ -17,12 +17,27 @@ ingress:
               name: kong-credentials
               key: password
   gateway:
+    admin:
+      type: ClusterIP
+      http:
+        enabled: true
+      https:
+        enabled: false
     namespace: kong
     postgresql:
       enabled: false
     proxy:
       type: NodePort
+    manager:
+      type: ClusterIP
+      http:
+        enabled: true
+      https:
+        enabled: false
+
     env:
+      #admin_gui_session_conf: '{"secret":"secret","storage":"kong","cookie_secure":true}'
+
       kong_admin_token:
         valueFrom:
           secretKeyRef:
