@@ -1,0 +1,15 @@
+admin:
+  route:
+    hostnames:
+      - kong-admin.k8s.local
+
+manager:
+  route:
+    hostnames:
+      - kong-manager.k8s.local
+
+ingress:
+  gateway:
+    env:
+      admin_gui_url: https://kong-manager.k8s.local:31598
+      admin_gui_api_url: https://kong-admin.k8s.local:31598

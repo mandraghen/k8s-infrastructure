@@ -10,8 +10,9 @@ spec:
     path: infra/common/kube-core/gateway-api/kong-gateway/helm
     targetRevision: main
     helm:
+      skipCrds: true
       valueFiles:
         - values.yaml
-      skipCRDs: true
+        - ../../../../../envs/local/kube-core/gateway-api/kong-gateway/helm/values.yaml
   destination:
     server: https://kubernetes.default.svc

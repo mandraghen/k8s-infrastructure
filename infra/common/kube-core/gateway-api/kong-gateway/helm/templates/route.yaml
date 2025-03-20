@@ -1,0 +1,44 @@
+#create httproute for the manager and admin API
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: kong-admin-route
+  namespace: {{ .Values.ingress.gateway.namespace | default "default" }}
+spec:
+  {{- if .Values.admin.route.hostnames }}
+  hostnames:
+    {{- range .Values.admin.route.hostnames }}
+    - {{ . | quote }}
+    {{- end }}
+  {{- end }}
+  parentRefs:
+    - name: nginx
+      namespace: default
+      sectionName: gateway-https
+  rules:
+    - backendRefs:
+        - name: kong-gateway-admin
+          port: 8001
+
+---
+
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: kong-manager-route
+  namespace: {{ .Values.ingress.gateway.namespace | default "default" }}
+spec:
+  {{- if .Values.manager.route.hostnames }}
+  hostnames:
+    {{- range .Values.manager.route.hostnames }}
+    - {{ . | quote }}
+    {{- end }}
+  {{- end }}
+  parentRefs:
+    - name: nginx
+      namespace: default
+      sectionName: gateway-https
+  rules:
+    - backendRefs:
+        - name: kong-gateway-manager
+          port: 8002
