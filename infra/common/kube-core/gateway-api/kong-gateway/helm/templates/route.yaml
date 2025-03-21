@@ -12,8 +12,8 @@ spec:
     {{- end }}
   {{- end }}
   parentRefs:
-    - name: nginx
-      namespace: default
+    - name: kong
+      namespace: kong
       sectionName: gateway-https
   rules:
     - backendRefs:
@@ -35,8 +35,8 @@ spec:
     {{- end }}
   {{- end }}
   parentRefs:
-    - name: nginx
-      namespace: default
+    - name: kong
+      namespace: kong
       sectionName: gateway-https
   rules:
     - backendRefs:
