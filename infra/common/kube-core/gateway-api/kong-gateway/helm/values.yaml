@@ -36,6 +36,8 @@ ingress:
         enabled: false
 
     env:
+      enforce_rbac: on
+      admin_gui_auth: basic-auth
       #admin_gui_session_conf: '{"secret":"secret","storage":"kong","cookie_secure":true}'
 
       kong_admin_token:
