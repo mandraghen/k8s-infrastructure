@@ -3,19 +3,19 @@ ingress:
     namespace: kong
     postgresql:
       enabled: false
-    env:
-      password:
-        valueFrom:
-          secretKeyRef:
-            name: kong-credentials
-            key: password
-    ingressController:
-      env:
-        kong_admin_token:
-          valueFrom:
-            secretKeyRef:
-              name: kong-credentials
-              key: password
+#    env:
+#      password:
+#        valueFrom:
+#          secretKeyRef:
+#            name: kong-credentials
+#            key: password
+#    ingressController:
+#      env:
+#        kong_admin_token:
+#          valueFrom:
+#            secretKeyRef:
+#              name: kong-credentials
+#              key: password
   gateway:
     admin:
       type: ClusterIP
@@ -36,13 +36,11 @@ ingress:
         enabled: false
 
     env:
-      #admin_gui_session_conf: '{"secret":"secret","storage":"kong","cookie_secure":true}'
-
-      kong_admin_token:
-        valueFrom:
-          secretKeyRef:
-            name: kong-credentials
-            key: password
+#      kong_admin_token:
+#        valueFrom:
+#          secretKeyRef:
+#            name: kong-credentials
+#            key: password
 
       database: postgres
       pg_host: postgresql.postgresql
