@@ -1,5 +1,5 @@
 apiVersion: configuration.konghq.com/v1
-kind: KongPlugin
+kind: KongClusterPlugin
 metadata:
   name: rate-limit-200-min
   namespace: {{ .Values.ingress.gateway.namespace | default "default" }}
@@ -13,7 +13,7 @@ plugin: rate-limiting
 ---
 
 apiVersion: configuration.konghq.com/v1
-kind: KongPlugin
+kind: KongClusterPlugin
 metadata:
   name: proxy-cache-all-endpoints-get-head
   namespace: {{ .Values.ingress.gateway.namespace | default "default" }}

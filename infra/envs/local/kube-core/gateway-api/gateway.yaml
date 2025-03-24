@@ -51,7 +51,7 @@ spec:
       tls:
         mode: Terminate
         certificateRefs:
-          - name: self-signed-cert
+          - name: kong-self-signed-cert
       allowedRoutes:
         namespaces:
           from: All
