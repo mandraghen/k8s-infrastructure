@@ -29,6 +29,8 @@ ingress:
 
 route:
   enabled: true
+  annotations:
+    konghq.com/plugins: rate-limit-200-min,proxy-cache-all-endpoints-get-head
   gateway:
     name: kong
     namespace: default
