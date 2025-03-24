@@ -6,7 +6,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: kong
 config:
-  minute: 200
+  minute: 1000
   policy: local
 plugin: rate-limiting
 
@@ -27,6 +27,11 @@ config:
     - GET
     - HEAD
   content_type:
-    - text/plain; charset=utf-8
+    - text/plain*
+    - text/html*
+    - application/javascript*
+    - text/css*
+    - font/*
+    - image/*
   cache_ttl: 300
   strategy: memory
