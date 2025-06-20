@@ -1,15 +1,16 @@
+{{- define "app-lib.hpa" -}}
 {{- if .Values.autoscaling.enabled }}
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "auth-spa.fullname" . }}
+  name: {{ include "app-lib.fullname" . }}
   labels:
-    {{- include "auth-spa.labels" . | nindent 4 }}
+    {{- include "app-lib.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "auth-spa.fullname" . }}
+    name: {{ include "app-lib.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
@@ -29,4 +30,5 @@ spec:
           type: Utilization
           averageUtilization: {{ .Values.autoscaling.targetMemoryUtilizationPercentage }}
     {{- end }}
+{{- end }}
 {{- end }}

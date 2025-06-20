@@ -1,0 +1,11 @@
+{{ include "app-lib.deployment" . }}
+---
+{{ include "app-lib.service" . }}
+---
+{{ include "app-lib.ingress" . }}
+---
+{{ include "app-lib.hpa" . }}
+---
+{{ include "app-lib.serviceAccount" . }}
+---
+{{ include "app-lib.route" . }}

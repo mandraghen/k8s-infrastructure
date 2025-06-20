@@ -1,16 +1,17 @@
+{{- define "app-lib.deployment" -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "auth-spa.fullname" . }}
+  name: {{ include "app-lib.fullname" . }}
   labels:
-    {{- include "auth-spa.labels" . | nindent 4 }}
+    {{- include "app-lib.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "auth-spa.selectorLabels" . | nindent 6 }}
+      {{- include "app-lib.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,7 +19,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "auth-spa.labels" . | nindent 8 }}
+        {{- include "app-lib.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
@@ -27,7 +28,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "auth-spa.serviceAccountName" . }}
+      serviceAccountName: {{ include "app-lib.serviceAccountName" . }}
       {{- with .Values.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}
@@ -80,3 +81,4 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+{{- end }}

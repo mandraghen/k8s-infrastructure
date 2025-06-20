@@ -1,10 +1,11 @@
+{{- define "app-lib.route" -}}
 {{- if .Values.route.enabled -}}
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: {{ include "auth-spa.fullname" . }}-route
+  name: {{ include "app-lib.fullname" . }}-route
   labels:
-    {{- include "auth-spa.labels" . | nindent 4 }}
+    {{- include "app-lib.labels" . | nindent 4 }}
   {{- with .Values.route.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -23,6 +24,7 @@ spec:
   {{- end }}
   rules:
     - backendRefs:
-        - name: {{ include "auth-spa.fullname" $ }}
+        - name: {{ include "app-lib.fullname" $ }}
           port: {{ $.Values.service.port }}
+{{- end }}
 {{- end }}
