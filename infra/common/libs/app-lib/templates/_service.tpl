@@ -1,9 +1,10 @@
+{{- define "app-lib.service" -}}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "auth-spa.fullname" . }}
+  name: {{ include "app-lib.fullname" . }}
   labels:
-    {{- include "auth-spa.labels" . | nindent 4 }}
+    {{- include "app-lib.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -12,4 +13,5 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{- include "auth-spa.selectorLabels" . | nindent 4 }}
+    {{- include "app-lib.selectorLabels" . | nindent 4 }}
+{{- end }}

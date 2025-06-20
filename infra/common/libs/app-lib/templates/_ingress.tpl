@@ -1,10 +1,11 @@
+{{- define "app-lib.ingress" -}}
 {{- if .Values.ingress.enabled -}}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "auth-spa.fullname" . }}
+  name: {{ include "app-lib.fullname" . }}
   labels:
-    {{- include "auth-spa.labels" . | nindent 4 }}
+    {{- include "app-lib.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -35,9 +36,10 @@ spec:
             {{- end }}
             backend:
               service:
-                name: {{ include "auth-spa.fullname" $ }}
+                name: {{ include "app-lib.fullname" $ }}
                 port:
                   number: {{ $.Values.service.port }}
           {{- end }}
     {{- end }}
+{{- end }}
 {{- end }}
