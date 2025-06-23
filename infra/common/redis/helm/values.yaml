@@ -1,0 +1,8 @@
+redis:
+  architecture: standalone
+  auth:
+    enabled: true
+    existingSecret: redis-secret
+    existingSecretPasswordKey: password
+
+  namespaceOverride: "redis"

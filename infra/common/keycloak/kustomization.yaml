@@ -3,6 +3,5 @@ resources:
   - namespace.yaml
   - install.yaml
   - route.yaml
-  - secrets.yaml
 patches:
   - path: config.yaml
