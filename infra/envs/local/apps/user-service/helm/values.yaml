@@ -7,7 +7,7 @@ extraEnv:
   - name: SPRING_PROFILES_ACTIVE
     value: k8s-local
   - name: SPRING_DATASOURCE_URL
-    value: jdbc:postgresql://postgresql.postgresql:5432/user-service
+    value: jdbc:postgresql://postgresql.postgresql:5432/users_service
   - name: SPRING_DATASOURCE_USERNAME
     valueFrom:
       secretKeyRef:

@@ -32,10 +32,10 @@ data:
     
     export APP_DB_PASS=$USER_SERVICE_PASSWORD
     psql -v ON_ERROR_STOP=1 --username postgres <<-EOSQL
-       CREATE DATABASE user-service;
+       CREATE DATABASE users_service;
        CREATE USER $USER_SERVICE_USER WITH ENCRYPTED PASSWORD '$APP_DB_PASS';
-       GRANT ALL PRIVILEGES ON DATABASE user-service TO $USER_SERVICE_USER;
-       \connect user-service
+       GRANT ALL PRIVILEGES ON DATABASE users_service TO $USER_SERVICE_USER;
+       \connect users_service
        BEGIN;
         CREATE SCHEMA AUTHORIZATION $USER_SERVICE_USER;
        COMMIT;
