@@ -1,0 +1,29 @@
+image:
+  tag: ""
+route:
+  hostnames:
+    - user-service.app.local
+extraEnv:
+  - name: SPRING_PROFILES_ACTIVE
+    value: k8s-local
+  - name: SPRING_DATASOURCE_URL
+    value: jdbc:postgresql://postgresql.postgresql:5432/user-service
+  - name: SPRING_DATASOURCE_USERNAME
+    valueFrom:
+      secretKeyRef:
+        name: user-service-secret
+        key: spring_datasource_username
+  - name: SPRING_DATASOURCE_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: user-service-secret
+        key: spring_datasource_password
+  - name: REDIS_HOST
+    value: redis-master.redis
+  - name: REDIS_PORT
+    value: "6379"
+  - name: REDIS_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: user-service-secret
+        key: redis_cache_access_key

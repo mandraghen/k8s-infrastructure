@@ -2,5 +2,6 @@ resources:
   - namespace.yaml
   - ../../../common/apps
   - auth-spa
+  - user-service
 patches:
   - path: applicationset-patch.yaml
