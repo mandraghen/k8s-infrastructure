@@ -1,5 +1,5 @@
 image:
-  tag: "sha-ee31456ddf23b76517f0a7e60f5e4237255c0be7"
+  tag: "sha-cf2b650c25840a40e395dfc1a4df5df7a937eee2"
 route:
   hostnames:
     - user-service.app.local
