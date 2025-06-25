@@ -1,4 +1,4 @@
+namespace: redis
 resources:
-  - namespace.yaml
   - secrets.yaml
   - ../../../common/redis

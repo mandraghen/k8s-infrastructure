@@ -1,6 +1,6 @@
 resources:
   - ../../../../common/kube-core/gateway-api
   - nginx-gateway/nginx-gateway-fabric-deploy-nodeport.yaml
-  - kong-gateway/application.yaml
+  - kong-gateway
 patches:
   - path: gateway.yaml

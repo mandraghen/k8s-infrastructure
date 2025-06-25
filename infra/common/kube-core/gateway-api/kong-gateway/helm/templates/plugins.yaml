@@ -2,7 +2,7 @@ apiVersion: configuration.konghq.com/v1
 kind: KongClusterPlugin
 metadata:
   name: rate-limit-200-min
-  namespace: {{ .Values.ingress.gateway.namespace | default "default" }}
+  namespace: {{ .Values.ingress.gateway.namespace }}
   annotations:
     kubernetes.io/ingress.class: kong
 config:
@@ -16,7 +16,7 @@ apiVersion: configuration.konghq.com/v1
 kind: KongClusterPlugin
 metadata:
   name: proxy-cache-all-endpoints-get-head
-  namespace: {{ .Values.ingress.gateway.namespace | default "default" }}
+  namespace: {{ .Values.ingress.gateway.namespace }}
   annotations:
     kubernetes.io/ingress.class: kong
 plugin: proxy-cache
@@ -35,3 +35,40 @@ config:
     - image/*
   cache_ttl: 300
   strategy: memory
+
+---
+
+apiVersion: configuration.konghq.com/v1
+kind: KongClusterPlugin
+metadata:
+  name: openid-connect-keycloak
+  namespace: {{ .Values.ingress.gateway.namespace }}
+  annotations:
+    kubernetes.io/ingress.class: kong
+plugin: openid-connect
+config:
+  issuer: https://keycloak.nip.io.k8s.local:31598/realms/demorealm #test internal url?
+  client_auth:
+    - client_secret_jwt #client_secret_post
+  auth_methods:
+    - authorization_code
+    - refresh_token
+    - session
+  response_mode: form_post
+  preserve_query_args: true
+  login_action: redirect
+  login_tokens:
+  #authorization_endpoint: http://localhost:8080
+configPatches:
+  - path: /client_id # This is the path to the field in the plugin's configuration this patch will populate.
+    valueFrom:
+      secretKeyRef:
+        namespace: {{ .Values.ingress.gateway.namespace }}
+        name: keycloak-credentials # This is the name of the secret.
+        key: client_id
+  - path: /client_secret
+    valueFrom:
+      secretKeyRef:
+        namespace: {{ .Values.ingress.gateway.namespace }}
+        name: keycloak-credentials
+        key: client_secret

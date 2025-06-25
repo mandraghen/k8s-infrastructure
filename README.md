@@ -1,5 +1,5 @@
 # k8s-infrastructure
-This repo contains all resources needed to setup a k8s platform including some useful tools and components, in the manifest format, according to the principles of IaC and GitOps:
+This repo contains all resources needed to set up a k8s platform including some useful tools and components, in the manifest format, according to the principles of IaC and GitOps:
 * k8s Dashboard configuration
 * [API Gateway](https://gateway-api.sigs.k8s.io/) ([nginx implementation](https://docs.nginx.com/nginx-gateway-fabric/)), replacing the Ingress component
 * [cert-manager](https://cert-manager.io/) for the https certificates management
@@ -7,6 +7,14 @@ This repo contains all resources needed to setup a k8s platform including some u
 * [ArgoCD](https://argo-cd.readthedocs.io/en/stable/) to keep all configurations in sync
 * [keycloak](https://www.keycloak.org/getting-started/getting-started-kube) as identity provider and authorization service for future services, uses postgreSQL as persistence layer
 * [postgreSQL](https://bitnami.com/stack/postgresql)
+* [Redis](https://github.com/bitnami/charts/tree/main/bitnami/redis) as a caching service for the hibernate level 2 cache
+
+### Other features
+
+* Application deployment via [Helm](https://helm.sh/) charts, using a custom library for templates, and [Kustomize](https://kustomize.io/) overlays
+* Namespace management for isolation of components
+* Automated application deployment with [ArgoCD ApplicationSet](https://argo-cd.readthedocs.io/en/latest/user-guide/application-set/)
+* TLS management for secure external communication
 
 ## Prerequisites
 1) Install a kubernetes instance: you can use [minikube](https://minikube.sigs.k8s.io/docs/) for your local environment or [kubespray](https://kubespray.io/) for a production-like environment.
@@ -48,4 +56,16 @@ You need to install the client locally to encrypt secrets and have direct access
 Alternatively for manjaro users:
 ```bash
   sudo pacman -S kubeseal
+```
+
+## Hosts Configuration
+To access the services exposed by your local Kubernetes cluster, you need to add the following entries to your /etc/hosts file. This maps the custom domains used by the API Gateway and other services to your local cluster IP:
+```text
+<minikube-ip> dashboard.k8s.local
+<minikube-ip> argocd.k8s.local
+<minikube-ip> keycloak.nip.io.k8s.local
+<minikube-ip> kong-manager.k8s.local
+<minikube-ip> kong-admin.k8s.local
+<minikube-ip> auth-spa.app.local
+<minikube-ip> user-service.app.local
 ```
