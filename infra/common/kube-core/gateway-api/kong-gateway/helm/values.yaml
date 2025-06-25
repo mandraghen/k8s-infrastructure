@@ -28,6 +28,7 @@ ingress:
         enabled: false
 
     env:
+      log_level: debug
       database: postgres
       pg_host: postgresql.postgresql
       pg_port: 5432

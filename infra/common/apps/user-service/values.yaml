@@ -30,7 +30,7 @@ ingress:
 route:
   enabled: true
   annotations:
-    konghq.com/plugins: rate-limit-200-min,proxy-cache-all-endpoints-get-head
+    konghq.com/plugins: rate-limit-200-min,proxy-cache-all-endpoints-get-head,openid-connect-keycloak
   gateway:
     name: kong
     namespace: default
